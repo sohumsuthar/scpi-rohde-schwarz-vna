@@ -10,6 +10,7 @@ import zipfile
 
 # my script to control the VNA
 import zva as vna
+# import zna as vna
 
 def export_s2p(meas, f, folder_path, filename, skip_dir=False):
     # meas: array of multiple iteration. index [iter, para, freq]
@@ -54,8 +55,8 @@ if __name__=='__main__':
 
     #######---NOTE---######
     '''
-    For the reconstruction of the collected data to look correctly, you need to make sure
-    that the traces on the VNA in following definition, order, and in channel 1: 
+    For this example, for the reconstruction of the collected data to look correctly, you need to make sure
+    that the traces on the VNA in following definition, creation order, and in channel 1: 
     Tr1: S11
     Tr2: S12
     Tr3: S21

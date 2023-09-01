@@ -1,11 +1,11 @@
 # Python SCPI for Rohde & Schwarz VNAs
 
-Python SCPI script to collect complex-valued trace data from an R&S VNA.
+Python SCPI script to collect complex-valued trace data from an R&S VNA. The scripts also allows disabling factory calibration.
 
 The SCPI commands were taken from the user manual of the tested VNAs. Currently tested VNAs are:
 
 - ZVA <https://www.rohde-schwarz.com/manual/zva/>
-- ZNA (to be updated)
+- ZNA <https://www.rohde-schwarz.com/manual/zna/>
 - ZNL (to be updated)
 
 ## Code requirement
@@ -30,7 +30,10 @@ You can collect complex-valued traces on the screen without changing any setting
 
 ```python
     import numpy as np
-    import zva as vna # my code
+    
+    # my code
+    import zva as vna 
+    # import zna as vna
 
     frequencies, measurements, trace_definitions = vna.read_traces(address='GPIB0::6::INSTR', num_sweeps=10, channels=[1])
     # trace_definitions gives the definition of the collected data in the same order as stored in the 'measurements' variable
