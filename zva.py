@@ -50,7 +50,7 @@ def read_traces(address='GPIB0::6::INSTR', num_sweeps=1,
     '''
 
     channels = np.atleast_1d(channels)
-    with pyvisa.ResourceManager().open_resource(address) as vna:
+    with pyvisa.ResourceManager('@py').open_resource(address) as vna:
         vna.timeout = timeout # Set time out duration in ms
         vna.clear()
         vna.write(':SYSTem:DISPlay:UPDate ON') # display updates while in remote control
