@@ -6,7 +6,7 @@ The SCPI commands were taken from the user manual of the tested VNAs. Currently 
 
 - ZVA <https://www.rohde-schwarz.com/manual/zva/>
 - ZNA <https://www.rohde-schwarz.com/manual/zna/>
-- ZNL (to be updated)
+- ZNL <https://www.rohde-schwarz.com/manual/znl/>
 
 ## Code requirement
 
