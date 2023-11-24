@@ -6,7 +6,7 @@ The SCPI commands are found on the manual guide of ZVA:
 "ZVA_ZVB_ZVT_OperatingManual_en_33.pdf"
 https://www.rohde-schwarz.com/manual/zva/
 """
-
+ 
 import pyvisa
 '''
 to install pyvisa 

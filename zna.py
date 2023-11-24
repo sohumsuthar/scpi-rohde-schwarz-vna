@@ -6,7 +6,7 @@ The SCPI commands are found on the manual guide of ZNA:
 "ZNA_UserManual_en_31.pdf"
 https://www.rohde-schwarz.com/manual/zna/
 """
-
+ 
 import pyvisa
 '''
 to install pyvisa 
