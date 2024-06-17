@@ -68,7 +68,7 @@ if __name__=='__main__':
     '''
     #######---////---######
 
-    frequencies, measurements, trace_definitions = vna.read_traces(address='TCPIP::192.168.0.30::INSTR', 
+    frequencies, measurements, trace_definitions = vna.read_traces(address='TCPIP0::169.254.136.107::inst0::INSTR', 
                                                                    num_sweeps=100, turn_fact_cal_off=True)
     f = frequencies[0]     # take data only from first listed channel
     meas = measurements[0] # take data only from first listed channel

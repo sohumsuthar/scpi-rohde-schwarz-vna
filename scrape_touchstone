@@ -1,0 +1,39 @@
+import numpy as np
+import skrf as rf
+import zva as vna 
+from RsInstrument.RsInstrument import RsInstrument
+
+def initialize_vna(address='TCPIP0::169.254.136.107::inst0::INSTR', sweeps=1, channels=[1]):
+    instr = RsInstrument(address, True, False)
+    
+    idn = instr.query_str('*IDN?')
+    print(f"\nHello, I am: '{idn}'")
+    print(f'RsInstrument driver version: {instr.driver_version}')
+    print(f'Visa manufacturer: {instr.visa_manufacturer}')
+    print(f'Instrument full name: {instr.full_instrument_model_name}')
+    print(f'Instrument installed options: {",".join(instr.instrument_options)}')
+    
+    frequencies, measurements, trace_definitions = vna.read_traces(address=address, num_sweeps=sweeps, channels=channels)
+    return frequencies, measurements, trace_definitions
+
+if __name__ == '__main__':
+    import os
+    freqs, meas, trace_definitions = initialize_vna(sweeps = 1, channels = [1])
+    
+    num_ports = int(np.sqrt(len(meas[0]) / len(freqs[0]))) 
+
+    freqs = freqs[0]
+    folder_path = os.getcwd()    
+    freq = rf.Frequency.from_f(freqs, unit='Hz')
+    freq.unit = 'GHz'
+    filename = 'measurement_name'
+    N = len(freq.f)
+    os.makedirs(os.path.join(folder_path, filename), exist_ok=True)
+
+    for inx, data in enumerate(meas[0]):
+        S_para = np.array([[[s11,s12], [s21,s22]] for s11,s12,s21,s22 in zip(data[0],data[1],data[2],data[3])])
+        NW = rf.Network(s=S_para, frequency=freq, name = filename + f'_S_param_{inx+1:0{len(str(N))}d}')
+        NW.write_touchstone(filename = filename + f'_S_param_{inx+1:0{len(str(N))}d}', 
+                            dir = os.path.join(folder_path, filename), skrf_comment=False)
+
+    print("Traces have been successfully exported to Touchstone files.")

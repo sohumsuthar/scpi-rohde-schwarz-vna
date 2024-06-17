@@ -22,7 +22,7 @@ import numpy as np  # python -m pip install numpy
 import time
 from datetime import timedelta
 
-def read_traces(address='GPIB0::6::INSTR', num_sweeps=1, 
+def read_traces(address='TCPIP0::169.254.136.107::inst0::INSTR', num_sweeps=1, 
                 channels=[1], timeout=30000, turn_fact_cal_off=None):
     '''
     Read the traces from the VNA.
@@ -116,6 +116,6 @@ def read_traces(address='GPIB0::6::INSTR', num_sweeps=1,
 
 
 if __name__=='__main__':
-    frequencies, measurements, trace_definitions = read_traces(address='TCPIP::192.168.0.30::INSTR', num_sweeps=5, turn_fact_cal_off=True)
+    frequencies, measurements, trace_definitions = read_traces(address='TCPIP0::169.254.136.107::inst0::INSTR', num_sweeps=5, turn_fact_cal_off=True)
 
 # EOF
